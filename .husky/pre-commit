@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# Load husky log script
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run prettier
+
+npm run lint
+
+echo "Finished Linter and Prettier"

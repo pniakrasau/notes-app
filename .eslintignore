@@ -1,1 +1,19 @@
+# IDE
+.vscode/*
+.idea/*
+
+# nx
+.nx
+
+# generated
+dist
+build
 node_modules
+coverage
+
+# eslint configuration
+.eslintrc.js
+
+#jest configuration
+jest.preset.js
+jest.config.ts

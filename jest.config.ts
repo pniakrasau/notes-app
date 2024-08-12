@@ -1,15 +1,20 @@
 /* eslint-disable */
+// Set to only 1 test check temporary
+// @TODO(pniakras) cover code with tests
 export default {
   displayName: 'notes-app',
   preset: './jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
-    '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/react/babel'] }],
+    '^.+\\.[tj]sx?$': [
+      '@swc/jest',
+      { jsc: { parser: { syntax: 'typescript', tsx: true }, transform: { react: { runtime: 'automatic' } } } },
+    ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: './coverage/notes-app',
+  coverageDirectory: './coverage',
+  setupFilesAfterEnv: ['@testing-library/jest-dom', 'jest-extended', './setupTests.ts'],
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.[jt]s?(x)',
-    '<rootDir>/src/**/*(*.)@(spec|test).[jt]s?(x)',
+    './**/*.spec.tsx',
   ],
 };

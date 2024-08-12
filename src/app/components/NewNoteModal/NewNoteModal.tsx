@@ -1,0 +1,101 @@
+import { Button, Dialog, Stack } from '@mui/material';
+import dayjs from 'dayjs';
+import type { ReactElement } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { v4 as uuid } from 'uuid';
+
+import { useAddNote } from '~/notes/components/NewNoteModal/hooks/useAddNote';
+import { FormDate } from '~/notes/components/NewNoteModal/NewNoteForm/FormDate';
+import { FormSelect } from '~/notes/components/NewNoteModal/NewNoteForm/FormSelect';
+import { FormText } from '~/notes/components/NewNoteModal/NewNoteForm/FormText';
+import { useGetColors } from '~/notes/components/NewNoteModal/NewNoteForm/hooks/useGetColors';
+import { newNoteModalStyle } from '~/notes/components/NewNoteModal/NewNoteModal.style';
+import type { Note } from '~/notes/models/note.model';
+import { NoteColorsVariants } from '~/notes/models/note.model';
+
+const defaultValues: Note = {
+  id: '',
+  color: NoteColorsVariants.Brown,
+  text: '',
+  position: 0,
+  dueDate: dayjs(new Date()),
+};
+
+type Props = {
+  isOpened: boolean;
+  handleClose: () => void;
+  searchValue: string;
+};
+
+// @TODO(pnaikras): add zod for validations
+export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): ReactElement {
+  const { data: colorOptions, error, isPending: isPendingColors } = useGetColors();
+  const { control, reset, handleSubmit } = useForm<Note>({ defaultValues });
+  const { mutate, isPending: isPendingNewNote } = useAddNote({
+    searchValue,
+    onSuccess: () => {
+      reset();
+      handleClose();
+    },
+  });
+
+  const onSubmit: SubmitHandler<Note> = (note: Note): void => {
+    mutate({
+      note: {
+        ...note,
+        id: uuid(),
+        position: Math.random() * 4 - 2,
+      },
+    });
+  };
+
+  const isFieldDisabled = isPendingNewNote || isPendingColors || Boolean(error);
+  const isButtonDisabled = isPendingNewNote || isPendingColors;
+
+  return (
+    <Dialog
+      data-testid="add-new-note-modal"
+      aria-labelledby="add new note modal"
+      onClose={handleClose}
+      open={isOpened}
+      fullWidth
+      maxWidth="sm"
+      sx={newNoteModalStyle}
+      disablePortal
+    >
+      <form onSubmit={handleSubmit(onSubmit)} style={{ height: '100%', display: 'flex' }}>
+        <Stack flex={1} gap={2} justifyContent="space-between">
+          <FormSelect
+            data-testid="add-new-note-color"
+            name="color"
+            control={control}
+            options={colorOptions!}
+            disabled={isFieldDisabled}
+          />
+          <FormText
+            data-testid="add-new-note-text"
+            name="text"
+            control={control}
+            label="Note text"
+            disabled={isFieldDisabled}
+          />
+          <FormDate data-testid="add-new-note-due-date" name="dueDate" control={control} />
+          <Stack direction="row" justifyContent="space-between">
+            <Button
+              data-testid="add-new-note-close-modal"
+              disabled={isButtonDisabled}
+              color="error"
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+            <Button data-testid="add-new-note-submit" disabled={isButtonDisabled} type="submit" color="success">
+              Create Note
+            </Button>
+          </Stack>
+        </Stack>
+      </form>
+    </Dialog>
+  );
+}
