@@ -9,7 +9,8 @@ It provides a user-friendly interface for managing notes efficiently.
  - Move to Trash: Notes can be moved to the trash bin by dragging them to the designated area.
  - Fake API: The application uses a fake API for simplicity, allowing users to interact with notes without the need for a backend server.
 
-## #Commands
+## Commands
+
 | Command         | Description                            |
 |-----------------|----------------------------------------|
 | `start`         | Builds and starts applications locally |
