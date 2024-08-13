@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const Board = memo(({ searchValue }: Props): ReactElement => {
-  const { data, error, isPending } = useGetNotes({ searchValue });
+  const { data, error, isFetching } = useGetNotes({ searchValue });
   const [draggedNotes, setDraggedNotes] = useState<Note[]>([]);
 
   useEffect(() => {
@@ -31,11 +31,11 @@ export const Board = memo(({ searchValue }: Props): ReactElement => {
     return <ErrorBoard searchValue={searchValue} />;
   }
 
-  if (!data?.length) {
+  if (!data?.length && !isFetching) {
     return <NoCards />;
   }
 
-  const notes = isPending ? (
+  const notes = isFetching ? (
     <NoteSkeletonLoader />
   ) : (
     draggedNotes.map((note) => <NoteCard key={note.id} note={note} moveCard={moveCard} />)
@@ -46,7 +46,7 @@ export const Board = memo(({ searchValue }: Props): ReactElement => {
       <Stack flex={6} direction="row" gap={4} flexWrap="wrap" justifyContent="center" ref={dropRef}>
         {notes}
       </Stack>
-      {!isPending && <Basket searchValue={searchValue} setDraggableNotes={setDraggedNotes} />}
+      {!isFetching && <Basket searchValue={searchValue} setDraggableNotes={setDraggedNotes} />}
     </Stack>
   );
 });
