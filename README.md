@@ -70,10 +70,12 @@ Required versions of engines:
 ### Nx
 Nx was chosen for its comprehensive scaffolding capabilities, which include built-in support for generating unit and end-to-end (e2e) tests, setting up linters, bundling applications, and managing caching effectively. Nx's ability to streamline the development process by providing a unified toolset for these tasks greatly enhances productivity and code quality.
 While alternatives like create-react-app offer similar scaffolding features, Nx also provides caching capabilities further boost development speed by intelligently caching build artifacts and dependencies, resulting in faster build times and improved developer efficiency.
+Drawbacks: Learning curve due to its more complex configuration and setup process.
 
 ### Webpack
 I chose Webpack for bundling my project's assets because it offers powerful configuration options, a robust plugin system, and efficient module bundling capabilities. Webpack helps optimize the performance of my application by combining and minifying resources, making it easier to manage dependencies and assets in a structured manner.
 Alternatives to Webpack include Parcel, Rollup, and Browserify. Webpack advantages include its extensive plugin ecosystem and huge community.
+Webpack Drawbacks - performance 
 
 ### TanStack Query
 TanStack Query was chosen  for data fetching and state management due to its seamless integration of features such as data caching, loading state handling, error state handling, optimistic updates, and code reduction. 
@@ -81,11 +83,13 @@ TanStack Query was chosen  for data fetching and state management due to its sea
 ### React-dnd
 I use React DnD because it is the most popular library for implementing drag-and-drop functionality in React applications. It provides a flexible and powerful way to create interactive user interfaces with drag-and-drop capabilities.
 While React Beautiful DnD offers superior animations compared to React DnD, it lacks the ability to drag elements on a grid.
+React DnD Drawbacks - more code comparing to React beautiful DnD 
 
 ### Jest + React testing library
 Jest and React Testing Library have become a standard choice for testing React applications.
 
 ### Playwright
 I chose Playwright for end-to-end testing because it supports multiple browser vendors and cross-browser compatibility.
-
+Alternatives: Selenium, Puppeteer, and TestCafe
+Drawbacks: a slightly steeper learning curve 
 
