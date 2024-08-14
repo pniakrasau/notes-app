@@ -18,7 +18,15 @@ export function Header({ searchValue, setSearchValue }: Props): ReactElement {
   // NOTE: I would suggest to create styled components
   // @pniakras: kind agree, but in that case I would need to change it everywhere to follow same code style. Let's leave it as it is for now if possible
   return (
-    <Stack>
+    <Stack
+      data-testid="header"
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+      gap={2}
+      p={2}
+      bgcolor="header.main"
+    >
       <TextField
         data-testid="search-input"
         onChange={handleInputChange}
