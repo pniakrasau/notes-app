@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { UseMutationResult } from '@tanstack/react-query/src/types';
+import { useTranslation } from 'react-i18next';
 
 import type { MoveNoteProps } from '~/notes/components/Board/hooks/useMoveCard';
 import type { ReorderNoteProps } from '~/notes/mock/mock.api';
@@ -13,7 +14,9 @@ type Props = {
 
 export function useReorderNotes({ moveCard }: Props): UseMutationResult<Note[], Error, ReorderNoteProps> {
   const { showMessage } = useSnackBar();
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: reorderNotes,
     // Optimistic update for better UX
@@ -21,9 +24,9 @@ export function useReorderNotes({ moveCard }: Props): UseMutationResult<Note[], 
       await queryClient.cancelQueries({ queryKey: ['notes'] });
       moveCard({ dragIndex, hoverIndex });
     },
-    onError: (error, { hoverIndex, dragIndex }) => {
+    onError: ({ message }, { hoverIndex, dragIndex }) => {
       moveCard({ hoverIndex, dragIndex });
-      showMessage({ text: error.message, severity: 'error' });
+      showMessage({ text: t(`notes:errors:${message}`), severity: 'error' });
     },
   });
 }

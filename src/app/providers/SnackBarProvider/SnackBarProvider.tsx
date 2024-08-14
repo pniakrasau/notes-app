@@ -14,6 +14,8 @@ export function SnackBarProvider({ children }: Props): ReactElement {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState<SnackBarMessage | undefined>();
 
+  // NOTE: useMemo and useCallback are not necessary here, I see no complex computation or dependencies
+  // @pniakras: useMemo is necessary here cause we use it in Provider. It is common practice and have appropriate linter rule
   const showMessage = useCallback((snackBarMessage: SnackBarMessage): void => {
     setMessage(snackBarMessage);
     setOpen(true);
@@ -27,6 +29,8 @@ export function SnackBarProvider({ children }: Props): ReactElement {
     return { showMessage };
   }, [showMessage]);
 
+  // NOTE: Add close button to the snackbar
+  // @pniakras: MUI snackbar has close button already (by default)
   return (
     <SnackBarContext.Provider value={value}>
       {children}

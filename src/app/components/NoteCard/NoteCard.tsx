@@ -1,7 +1,7 @@
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { Box, darken, Divider, Stack, Typography } from '@mui/material';
 import type { ReactElement } from 'react';
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 
 import type { MoveNoteProps } from '~/notes/components/Board/hooks/useMoveCard';
 import { useNoteDrag } from '~/notes/components/NoteCard/hooks/useNoteDrag';
@@ -18,7 +18,7 @@ export const NoteCard = memo(({ note, moveCard }: Props): ReactElement => {
   const { ref, dropRef } = useNoteDrop({ note, moveCard });
   const { dragRef, isDragging } = useNoteDrag({ note });
 
-  const styles = useMemo(() => noteStyles({ note, isDragging }), [isDragging, note]);
+  const styles = noteStyles({ note, isDragging });
 
   dragRef(dropRef(ref));
 

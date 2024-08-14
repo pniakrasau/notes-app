@@ -1,0 +1,30 @@
+{
+  "errors": {
+    "common": "Something went wrong",
+    "cannotGetNote": "Cannot get Notes",
+    "cannotAddNote": "Cannot add Note",
+    "cannotDeleteNote": "Cannot delete Note",
+    "cannotReorderNotes": "Cannot reorder Notes",
+    "useInsideProvider": "useSnackBar must be used within a SnackBarProvider"
+  },
+  "success": {
+    "noteAdded": "Note successfully added",
+    "noteDeleted": "Note successfully deleted"
+  },
+  "fields": {
+    "searchInputPlaceholder": "Seacrh note by text...",
+    "noteTextIsRequired": "Note text is required",
+    "lengthShouldBeLessThan": "Length should be less than {{noteLength}}",
+    "noteColorLabel": "Card Color",
+    "noteTextLabel": "Note Text",
+    "noteDueDateLabel": "Due Date"
+  },
+  "buttons": {
+    "addNewNote": "Create new Note",
+    "closeNote": "Close",
+    "createNote": "Create Note"
+  },
+  "common": {
+    "noCardsText": "No note cards available."
+  }
+}

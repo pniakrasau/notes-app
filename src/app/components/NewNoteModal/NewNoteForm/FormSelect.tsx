@@ -13,14 +13,16 @@ type Props<TFieldValues extends FieldValues, TOption extends OptionType> = {
   name: Path<TFieldValues>;
   control: Control<TFieldValues>;
   options: TOption[];
-  disabled?: boolean;
+  label: string;
+  disabled: boolean;
 };
 
 export function FormSelect<TFieldValues extends FieldValues, TOption extends OptionType>({
   name,
+  label,
   control,
   options,
-  disabled = false,
+  disabled,
 }: Props<TFieldValues, TOption>): ReactElement {
   return (
     <Controller
@@ -29,7 +31,7 @@ export function FormSelect<TFieldValues extends FieldValues, TOption extends Opt
       control={control}
       render={({ field: { onChange, value } }) => (
         <Stack gap={1}>
-          <InputLabel htmlFor="note-color">Card Color</InputLabel>
+          <InputLabel htmlFor="note-color">{label}</InputLabel>
           <Select
             id="note-color"
             data-testid="note-color"

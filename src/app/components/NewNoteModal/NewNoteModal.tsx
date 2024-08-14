@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import type { ReactElement } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { v4 as uuid } from 'uuid';
 
 import { useAddNote } from '~/notes/components/NewNoteModal/hooks/useAddNote';
@@ -30,6 +31,7 @@ type Props = {
 
 // @TODO(pnaikras): add zod for validations
 export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): ReactElement {
+  const { t } = useTranslation();
   const { data: colorOptions, error, isPending: isPendingColors } = useGetColors();
   const { control, reset, handleSubmit } = useForm<Note>({ defaultValues });
   const { mutate, isPending: isPendingNewNote } = useAddNote({
@@ -53,6 +55,7 @@ export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): Rea
   const isFieldDisabled = isPendingNewNote || isPendingColors || Boolean(error);
   const isButtonDisabled = isPendingNewNote || isPendingColors;
 
+  // NOTE: If you have to use more than 3 styled props, then it's better to create a styled component
   return (
     <Dialog
       data-testid="add-new-note-modal"
@@ -69,7 +72,9 @@ export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): Rea
           <FormSelect
             data-testid="add-new-note-color"
             name="color"
+            label={t('notes:fields:noteColorLabel')}
             control={control}
+            // NOTE: maybe not assertion but a default value?
             options={colorOptions!}
             disabled={isFieldDisabled}
           />
@@ -77,10 +82,15 @@ export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): Rea
             data-testid="add-new-note-text"
             name="text"
             control={control}
-            label="Note text"
+            label={t('notes:fields:noteTextLabel')}
             disabled={isFieldDisabled}
           />
-          <FormDate data-testid="add-new-note-due-date" name="dueDate" control={control} />
+          <FormDate
+            data-testid="add-new-note-due-date"
+            name="dueDate"
+            control={control}
+            label={t('notes:fields:noteDueDateLabel')}
+          />
           <Stack direction="row" justifyContent="space-between">
             <Button
               data-testid="add-new-note-close-modal"
@@ -88,10 +98,10 @@ export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): Rea
               color="error"
               onClick={handleClose}
             >
-              Close
+              {t('notes:buttons:closeNote')}
             </Button>
             <Button data-testid="add-new-note-submit" disabled={isButtonDisabled} type="submit" color="success">
-              Create Note
+              {t('notes:buttons:createNote')}
             </Button>
           </Stack>
         </Stack>

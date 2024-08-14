@@ -27,7 +27,7 @@ export const getNotes = ({ search }: GetNotesProps): Promise<Note[]> =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.9) {
-        reject(new Error('Cannot get Notes'));
+        reject(new Error('cannotGetNote'));
         return;
       }
 
@@ -46,7 +46,7 @@ export const addNote = ({ note }: AddNoteProps): Promise<Note> =>
     setTimeout(() => {
       // show error randomly
       if (Math.random() > 0.9) {
-        reject(new Error('Cannot add note'));
+        reject(new Error('cannotAddNote'));
         return;
       }
 
@@ -59,7 +59,7 @@ export const removeNote = ({ note }: AddNoteProps): Promise<Note> =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.9) {
-        reject(new Error('Cannot delete note'));
+        reject(new Error('cannotDeleteNote'));
         return;
       }
 
@@ -80,7 +80,7 @@ export const reorderNotes = ({ dragIndex, hoverIndex }: ReorderNoteProps): Promi
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.9) {
-        reject(new Error('Cannot reorder notes'));
+        reject(new Error('cannotReorderNotes'));
         return;
       }
 

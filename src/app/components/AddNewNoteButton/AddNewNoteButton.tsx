@@ -1,6 +1,7 @@
 import { Box, Button } from '@mui/material';
 import type { ReactElement } from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { NewNoteModal } from '~/notes/components/NewNoteModal/NewNoteModal';
 
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export function AddNewNoteButton({ searchValue }: Props): ReactElement {
+  const { t } = useTranslation();
   const [isOpened, setIsOpened] = useState(false);
 
   const handleOpenModal = (): void => {
@@ -21,7 +23,7 @@ export function AddNewNoteButton({ searchValue }: Props): ReactElement {
   return (
     <Box data-testid="add-new-note-container" display="flex">
       <Button data-testid="add-new-note-button" onClick={handleOpenModal} variant="outlined">
-        Create new Note
+        {t('notes:buttons:addNewNote')}
       </Button>
       <NewNoteModal
         data-testid="add-new-note-modal"

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { UseMutationResult } from '@tanstack/react-query/src/types';
 import type { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useGetNotes } from '~/notes/components/Board/hooks/useGetNotes';
 import type { RemoveNoteProps } from '~/notes/mock/mock.api';
@@ -17,6 +18,7 @@ export function useRemoveNote({
   setDraggableNotes,
   searchValue,
 }: Props): UseMutationResult<Note, Error, RemoveNoteProps> {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { showMessage } = useSnackBar();
   const queryKey = useGetNotes.getQueryKey({ searchValue });
@@ -36,7 +38,7 @@ export function useRemoveNote({
       setDraggableNotes(context);
     },
     onSuccess: () => {
-      showMessage({ text: 'Note successfully deleted', severity: 'success' });
+      showMessage({ text: t('notes:success:noteDeleted'), severity: 'success' });
     },
   });
 }
