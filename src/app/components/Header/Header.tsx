@@ -3,6 +3,7 @@ import type { ChangeEvent, Dispatch, ReactElement, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next';
 
 import { AddNewNoteButton } from '~/notes/components/AddNewNoteButton/AddNewNoteButton';
+import { headerStyles } from '~/notes/components/Header/Header.style';
 
 type Props = {
   searchValue: string;
@@ -15,8 +16,6 @@ export function Header({ searchValue, setSearchValue }: Props): ReactElement {
     setSearchValue(e.target.value);
   };
 
-  // NOTE: I would suggest to create styled components
-  // @pniakras: kind agree, but in that case I would need to change it everywhere to follow same code style. Let's leave it as it is for now if possible
   return (
     <Stack
       data-testid="header-container"
@@ -33,7 +32,7 @@ export function Header({ searchValue, setSearchValue }: Props): ReactElement {
         value={searchValue}
         type="search"
         placeholder={t('notes:fields.searchInputPlaceholder')}
-        sx={({ spacing }) => ({ width: spacing(50) })}
+        sx={headerStyles}
       />
       <AddNewNoteButton data-testid="add-new-note-button" searchValue={searchValue} />
     </Stack>

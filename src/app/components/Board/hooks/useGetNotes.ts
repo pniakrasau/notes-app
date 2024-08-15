@@ -13,9 +13,8 @@ export const getQueryKey = ({ searchValue }: { searchValue: string }): ['notes',
 export const useGetNotes = ({ searchValue }: Props): UseQueryResult<Note[], unknown> => {
   return useQuery<Note[], unknown, Note[], ['notes', string]>({
     queryKey: getQueryKey({ searchValue }),
-    queryFn: async ({ queryKey }) => {
-      const searchQuery = queryKey[1];
-      return getNotes({ search: searchQuery });
+    queryFn: async () => {
+      return getNotes({ search: searchValue });
     },
   });
 };

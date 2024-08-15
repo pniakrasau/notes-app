@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { App } from './App';
+import { App } from '~/notes/App';
 
 const boardTestId = 'board';
 const headerTestId = 'header';
