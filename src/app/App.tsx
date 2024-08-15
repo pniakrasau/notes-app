@@ -2,7 +2,7 @@ import { Container, Stack } from '@mui/material';
 import type { ReactElement } from 'react';
 import { useState } from 'react';
 
-import { Board } from '~/notes/components/Board/Board';
+import { Board } from '~/notes/components/Board';
 import { Header } from '~/notes/components/Header/Header';
 import { useDebouncedValue } from '~/notes/hooks/useDebouncedValue';
 import { DnDProviderSetup } from '~/notes/providers/DnDProviderSetup';

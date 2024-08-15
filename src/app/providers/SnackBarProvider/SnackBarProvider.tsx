@@ -2,8 +2,8 @@ import { Alert, Snackbar } from '@mui/material';
 import type { ReactElement, ReactNode } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
-import type { SnackBarMessage } from '~/notes/providers/SnackBarProvider/SnackBarContext';
-import { SnackBarContext } from '~/notes/providers/SnackBarProvider/SnackBarContext';
+import type { SnackBarMessage } from '~/notes/providers/SnackBarProvider';
+import { SnackBarContext } from '~/notes/providers/SnackBarProvider';
 
 type Props = {
   children: ReactNode;

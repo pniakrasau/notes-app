@@ -19,7 +19,7 @@ export function Header({ searchValue, setSearchValue }: Props): ReactElement {
   // @pniakras: kind agree, but in that case I would need to change it everywhere to follow same code style. Let's leave it as it is for now if possible
   return (
     <Stack
-      data-testid="header"
+      data-testid="header-container"
       direction="row"
       alignItems="center"
       justifyContent="center"
@@ -35,7 +35,7 @@ export function Header({ searchValue, setSearchValue }: Props): ReactElement {
         placeholder={t('notes:fields.searchInputPlaceholder')}
         sx={({ spacing }) => ({ width: spacing(50) })}
       />
-      <AddNewNoteButton searchValue={searchValue} />
+      <AddNewNoteButton data-testid="add-new-note-button" searchValue={searchValue} />
     </Stack>
   );
 }

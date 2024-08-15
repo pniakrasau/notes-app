@@ -3,7 +3,7 @@ import { useMemo, useRef } from 'react';
 import { useDrop } from 'react-dnd';
 import type { ConnectDropTarget } from 'react-dnd/src/types';
 
-import type { MoveNoteProps } from '~/notes/components/Board/hooks/useMoveCard';
+import type { MoveNoteProps } from '~/notes/components/Board';
 import { useReorderNotes } from '~/notes/components/NoteCard/hooks/useReorderNotes';
 import { NOTE_CARD_DRAGGABLE } from '~/notes/constants/draggable.constans';
 import type { Note } from '~/notes/models/note.model';

@@ -2,14 +2,10 @@ import { Stack } from '@mui/material';
 import type { ReactElement } from 'react';
 import { memo, useEffect, useState } from 'react';
 
-import { Basket } from '~/notes/components/Basket/Basket';
-import { ErrorBoard } from '~/notes/components/Board/ErrorBoard';
-import { useBoardDrop } from '~/notes/components/Board/hooks/useBoardDrop';
-import { useGetNotes } from '~/notes/components/Board/hooks/useGetNotes';
-import { useMoveCard } from '~/notes/components/Board/hooks/useMoveCard';
-import { NoCards } from '~/notes/components/Board/NoCards';
-import { NoteCard } from '~/notes/components/NoteCard/NoteCard';
-import { NoteSkeletonLoader } from '~/notes/components/NoteCard/NoteSkeletonLoader/NoteSkeletonLoader';
+import { Basket } from '~/notes/components/Basket';
+import { ErrorBoard, NoCards } from '~/notes/components/Board/components';
+import { useBoardDrop, useGetNotes, useMoveCard } from '~/notes/components/Board/hooks';
+import { NoteCard, NoteSkeletonLoader } from '~/notes/components/NoteCard';
 import type { Note } from '~/notes/models/note.model';
 
 type Props = {

@@ -7,10 +7,8 @@ import './i18n/i18n';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import { DateLocalizationProviderSetup } from '~/notes/providers/DateLocalizationProviderSetup';
-import { MUIThemeProviderSetup } from '~/notes/providers/MUIThemeProviderSetup';
+import { DateLocalizationProviderSetup, MUIThemeProviderSetup, SnackBarProvider } from '~/notes/providers';
 import { QueryClientProviderSetup } from '~/notes/providers/QueryClientProviderSetup';
-import { SnackBarProvider } from '~/notes/providers/SnackBarProvider/SnackBarProvider';
 
 import { App } from './app/App';
 

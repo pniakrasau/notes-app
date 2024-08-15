@@ -3,9 +3,8 @@ import { Box, darken, Divider, Stack, Typography } from '@mui/material';
 import type { ReactElement } from 'react';
 import { memo } from 'react';
 
-import type { MoveNoteProps } from '~/notes/components/Board/hooks/useMoveCard';
-import { useNoteDrag } from '~/notes/components/NoteCard/hooks/useNoteDrag';
-import { useNoteDrop } from '~/notes/components/NoteCard/hooks/useNoteDrop';
+import type { MoveNoteProps } from '~/notes/components/Board';
+import { useNoteDrag, useNoteDrop } from '~/notes/components/NoteCard/hooks';
 import { noteStyles } from '~/notes/components/NoteCard/NoteCard.style';
 import type { Note } from '~/notes/models/note.model';
 

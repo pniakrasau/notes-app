@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useGetNotes } from '~/notes/components/Board/hooks/useGetNotes';
+import { useGetNotes } from '~/notes/components/Board/hooks';
 
 type Props = {
   searchValue: string;

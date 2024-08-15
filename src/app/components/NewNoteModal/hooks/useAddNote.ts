@@ -6,7 +6,7 @@ import { useGetNotes } from '~/notes/components/Board/hooks/useGetNotes';
 import type { AddNoteProps } from '~/notes/mock/mock.api';
 import { addNote } from '~/notes/mock/mock.api';
 import type { Note } from '~/notes/models/note.model';
-import { useSnackBar } from '~/notes/providers/SnackBarProvider/hooks/useSnackBar';
+import { useSnackBar } from '~/notes/providers/SnackBarProvider';
 
 type Props = {
   searchValue: string;

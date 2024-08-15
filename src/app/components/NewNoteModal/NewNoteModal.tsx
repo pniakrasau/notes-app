@@ -4,14 +4,11 @@ import type { ReactElement } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { v4 as uuid } from 'uuid';
 
-import { useAddNote } from '~/notes/components/NewNoteModal/hooks/useAddNote';
-import { FormDate } from '~/notes/components/NewNoteModal/NewNoteForm/FormDate';
-import { FormSelect } from '~/notes/components/NewNoteModal/NewNoteForm/FormSelect';
-import { FormText } from '~/notes/components/NewNoteModal/NewNoteForm/FormText';
-import { useGetColors } from '~/notes/components/NewNoteModal/NewNoteForm/hooks/useGetColors';
+import { useAddNote, useGetColors } from '~/notes/components/NewNoteModal/hooks';
+import { FormDate, FormSelect, FormText } from '~/notes/components/NewNoteModal/NewNoteForm';
 import { newNoteModalStyle } from '~/notes/components/NewNoteModal/NewNoteModal.style';
+import { creteNote } from '~/notes/components/NewNoteModal/utils/note';
 import type { Note } from '~/notes/models/note.model';
 import { NoteColorsVariants } from '~/notes/models/note.model';
 
@@ -44,18 +41,13 @@ export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): Rea
 
   const onSubmit: SubmitHandler<Note> = (note: Note): void => {
     mutate({
-      note: {
-        ...note,
-        id: uuid(),
-        position: Math.random() * 4 - 2,
-      },
+      note: creteNote(note),
     });
   };
 
   const isFieldDisabled = isPendingNewNote || isPendingColors || Boolean(error);
   const isButtonDisabled = isPendingNewNote || isPendingColors;
 
-  // NOTE: If you have to use more than 3 styled props, then it's better to create a styled component
   return (
     <Dialog
       data-testid="add-new-note-modal"
@@ -74,7 +66,6 @@ export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): Rea
             name="color"
             label={t('notes:fields:noteColorLabel')}
             control={control}
-            // NOTE: maybe not assertion but a default value?
             options={colorOptions!}
             disabled={isFieldDisabled}
           />
