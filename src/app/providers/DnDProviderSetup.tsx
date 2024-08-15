@@ -1,3 +1,4 @@
+import { useMediaQuery, useTheme } from '@mui/material';
 import type { ReactElement, ReactNode } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -8,9 +9,10 @@ type Props = {
 };
 
 export function DnDProviderSetup({ children }: Props): ReactElement {
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <DndProvider backend={TouchBackend}>{children}</DndProvider>
-    </DndProvider>
-  );
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const backend = matches ? TouchBackend : HTML5Backend;
+
+  return <DndProvider backend={backend}>{children}</DndProvider>;
 }
