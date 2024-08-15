@@ -21,7 +21,7 @@ export const noteStyles: (props: Props) => SxProps<Theme> =
       borderColor: palette.divider,
       backgroundColor: note.color,
       marginBottom: spacing(2),
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Box shadow for the paper-like effect
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
       transform: `rotate(${note.position}deg)`,
       opacity: isDragging ? 0 : 1,
     };

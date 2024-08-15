@@ -28,7 +28,6 @@ export function useNoteDrop({ note, moveCard }: Props): ReturnType {
       isDragging: monitor.getHandlerId(),
     }),
 
-    // @TODO(pniakras): add overflow elements check for better UX
     hover: (dragged): void => {
       if (!ref.current) {
         return;

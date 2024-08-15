@@ -26,7 +26,6 @@ type Props = {
   searchValue: string;
 };
 
-// @TODO(pnaikras): add zod for validations
 export function NewNoteModal({ isOpened, handleClose, searchValue }: Props): ReactElement {
   const { t } = useTranslation();
   const { data: colorOptions, error, isPending: isPendingColors } = useGetColors();

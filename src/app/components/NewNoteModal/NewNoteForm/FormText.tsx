@@ -18,7 +18,6 @@ export function FormText<TFieldValues extends FieldValues>({
   name,
   control,
   label,
-  // NOTE: No need to place default false because it's false by default already
   disabled = false,
 }: Props<TFieldValues>): ReactElement {
   const { t } = useTranslation();
@@ -36,7 +35,6 @@ export function FormText<TFieldValues extends FieldValues>({
           <InputLabel htmlFor="note-text">{label}</InputLabel>
           <TextField
             data-testid="note-text"
-            // NOTE: I would suggest to use `error?.message`. It's going to be undefined anyway
             helperText={error?.message}
             error={!!error}
             onChange={onChange}
