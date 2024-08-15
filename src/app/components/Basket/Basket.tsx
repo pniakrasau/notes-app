@@ -2,7 +2,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Box } from '@mui/material';
 import type { Dispatch, ReactElement, SetStateAction } from 'react';
-import { useMemo } from 'react';
 import { useDrop } from 'react-dnd';
 
 import { basketStyles } from '~/notes/components/Basket/Basket.style';
@@ -29,7 +28,7 @@ export function Basket({ searchValue, setDraggableNotes }: Props): ReactElement 
     },
   });
 
-  const styles = useMemo(() => basketStyles({ isHovering }), [isHovering]);
+  const styles = basketStyles({ isHovering });
 
   return (
     <Box data-testid="basket" display="flex" justifyContent="center" flex={1}>
